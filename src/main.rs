@@ -24,7 +24,24 @@ This is the main file of OpenWM: An open-source, minimal, and customizable Windo
 //! ## Getting Started
 //! To get started with OpenWM, you can follow the [Getting Started](https://github.com/mariluski/openwm/wiki/Getting-Started) guide on the OpenWM wiki.
 
-use smithay;
 mod bar;
+mod configs;
+mod utils;
 
-fn main() {}
+fn main() {
+    println!(
+        "
+ ▄██████▄   ▄█     █▄    ▄▄▄▄███▄▄▄▄
+███    ███ ███     ███ ▄██▀▀▀███▀▀▀██▄
+███    ███ ███     ███ ███   ███   ███ 
+███    ███ ███     ███ ███   ███   ███
+███    ███ ███     ███ ███   ███   ███
+███    ███ ███     ███ ███   ███   ███
+███    ███ ███ ▄█▄ ███ ███   ███   ███
+ ▀██████▀   ▀███▀███▀   ▀█   ███   █▀  
+
+Starting... This won't take long.
+
+    "
+    );
+}
