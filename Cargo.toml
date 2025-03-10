@@ -1,0 +1,14 @@
+[package]
+name = "openwm"
+version = "0.1.0"
+edition = "2024"
+license = "GPL-3.0"
+authors = ["Mario \"Mariluski\" Rosell <mar1lusk1@proton.me>"]
+description = "A minimal window manager for Wayland"
+repository = "https://github.com/mariluski23/openwm"
+keywords = ["window-manager", "wayland"]
+categories = ["window-manager"]
+
+[dependencies]
+smithay = "0.5.1"
+tracing = "0.1.41"
