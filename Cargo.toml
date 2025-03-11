@@ -12,3 +12,4 @@ categories = ["window-manager"]
 [dependencies]
 smithay = "0.5.1"
 tracing = "0.1.41"
+xcursor = "0.3.8"
