@@ -12,17 +12,7 @@ OpenWM is an **extremely minimal**, **open-source** and **free** Window Manager 
 
 ## Installation
 
-OpenWM is available in the **`cargo` package manager**.
-
-```bash
-cargo install openwm
-```
-
-## Usage
-
-```bash
-openwm
-```
+<!-- TODO: Make this section. -->
 
 ## Customization
 
