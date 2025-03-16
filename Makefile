@@ -1,38 +1,63 @@
-.PHONY: build uninstall
+# Makefile for TrieWM
 
-build: ./src/main.c
-	@printf "\033[1mWelcome to OpenWM!\033[0m\n"
-	@printf "\033[36mWhich compiler do you want to use?\n"
-	@printf "  [g] gcc\n  [c] clang\n  [C] cc (default)\n> \033[0m"
-	@read compiler; \
+.PHONY: build clean
+
+# Compiler (default)
+CC = clang
+CFLAGS = -Wall -Wextra -Werror -std=c11 -I/usr/local/include
+LDFLAGS = -L/usr/local/lib
+
+EXEC = triewm
+SRC = src/main.c
+OBJ = $(SRC:.c=.o)
+
+build:
+	@echo "Welcome to the TrieWM build system!"
+	@echo -e "\033[36m?\033[0m What compiler do you want to use? \n"
+	@echo "    1 - clang (default)"
+	@echo "    2 - gcc"
+	@echo "    3 - cc"
+	@read -p "Selection: " compiler; \
 	case $$compiler in \
-		g)  echo "Using gcc..."; compiler_cmd="gcc";; \
-		c)  echo "Using clang..."; compiler_cmd="clang";; \
-		C)  echo "Using cc..."; compiler_cmd="cc";; \
-		*)  echo "No valid input. Defaulting to cc..."; compiler_cmd="cc";; \
+		2) comp=gcc ;; \
+		3) comp=cc ;; \
+		*) comp=clang ;; \
 	esac; \
-	echo "Compiling with $$compiler_cmd..."; \
-	$$compiler_cmd ./src/main.c -o openwm -Werror -w --std=c11 && \
-	sudo cp openwm /usr/local/bin/ && \
-	printf "\033[32m✔ Successfully installed: /usr/local/bin/openwm\033[0m\n" || \
-	printf "\033[31m✖ Build failed. Check your code or compiler settings.\033[0m\n"
+	echo "Using $$comp"; \
+	read -p "Use $$comp to compile? (y/n): " confirm; \
+	if [ "$$confirm" != "y" ]; then \
+		echo "Build cancelled."; \
+		exit 1; \
+	fi; \
+	echo "Building..."; \
+	$$comp $(CFLAGS) $(SRC) -o $(EXEC) $(LDFLAGS); \
+	if [ $$? -eq 0 ]; then \
+		printf "\033[32mBuild successful!\033[0m\n"; \
+	else \
+		printf "\033[31mBuild failed!\033[0m\n"; \
+		exit 1; \
+	fi; \
+	read -p "Move executable to /usr/local/bin? (y/n): " moveit; \
+	if [ "$$moveit" = "y" ]; then \
+		sudo mv $(EXEC) /usr/local/bin && \
+		printf "\033[32mMove successful!\033[0m\n" || \
+		{ printf "\033[31mMove failed!\033[0m\n"; exit 1; }; \
+	else \
+		echo "Executable is in the current directory."; \
+	fi
 
-uninstall:
-	@printf "\033[1mWelcome to OpenWM!\033[0m\n"
-	@printf "\033[31mAre you sure you want to uninstall OpenWM? ([Y]es or [N]o) \033[0m"
-	@read uninstalls; \
-	case $$uninstalls in \
-		y|Y) \
-			if [ -f /usr/local/bin/openwm ]; then \
-				echo "Uninstalling OpenWM..."; \
-				sudo rm -f /usr/local/bin/openwm && \
-				printf "\033[32m✔ OpenWM uninstalled.\033[0m\n"; \
-			else \
-				printf "\033[31m✖ OpenWM is not installed.\033[0m\n"; \
-			fi ;; \
-		*) echo "Cancelling..."; exit ;; \
-	esac;
-
-this_folder: ./src/main.c
-	@printf "- \033[1mINFO:\033[0m Making OpenWM on this folder with `clang`"
-	clang ./src/main.c/ -o openwm -Werror -w --std=c11
+clean:
+	@printf "\033[36m?\033[0m Do you want to \033[1muninstall\033[0m TrieWM?\n"
+	@read -p "Yes or no? (y/n): " confirm; \
+	if [ "$$confirm" = "y" ]; then \
+		echo "Cleaning..."; \
+		rm -f $(EXEC); \
+		if [ $$? -eq 0 ]; then \
+			printf "\033[32mClean successful!\033[0m\n"; \
+		else \
+			printf "\033[31mClean failed!\033[0m\n"; \
+			exit 1; \
+		fi; \
+	else \
+		echo "Cancelled."; \
+	fi
