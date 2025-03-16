@@ -1,128 +1,127 @@
-# OpenWM
+<div align="center">
+    <h1>TrieWM</h1>
+    <p>A lightweight window manager for X11 and Wayland</p>
+</div>
 
-OpenWM is an **extremely minimal**, **open-source** and **free** Window Manager for Linux.
+<ul align="center">
+    <a href="https://git.sr.ht/~mariluski/openwm">Repository</a>
+    <a href="https://todo.sr.ht/~mariluski/OpenWM_Issues">Issue Tracker</a>
+    <a href="https://web.libera.chat/#OpenWM">Libera Chat (IRC Channel)</a>
+    <a href="https://lists.sr.ht/~mariluski/openwm-devel">Contributing</a>
+    <a href="https://lists.sr.ht/~mariluski/openwm-announce">Announcements</a>
+    <a href="https://man.sr.ht/~mariluski/OpenWM_Wiki">Documentation</a>
+</ul>
+
+## About
+
+Trie is a lightweight window manager for X11 and Wayland compatible with Linux and BSD.
+It is very customizable, supports plugins and is **[Free Software](#license)**.
 
 ## Features
 
+- Customizable
+- Modular
+- Extensible
 - Fast
-- Based on Wayland
-- Minimal (Text)
-- Supports graphical applications
-- Supports multiple monitors
+- Small
+- Easy to use
+- Themes
+- And more...
 
 ## Installation
 
-<!-- TODO: Make this section. -->
+Trie can only be installed from source or via the pre-compiled binaries.
 
-## Customization
+> Note: The building process is very simple and user-friendly.
 
-OpenWM is **highly customizable**.
+### Dependencies
 
-OpenWM already comes with a pretty *decent* config witht the Tokyo-Night theme.
+- [Wlroots](https://github.com/swaywm/wlroots)
+- [Wayland](https://wayland.freedesktop.org/)
+- [Wayland protocols](https://gitlab.freedesktop.org/wayland/wayland-protocols)
+- [`make`](https://www.gnu.org/software/make/)
+- [`egl`](https://www.khronos.org/egl/)
+- [GLESv2](https://registry.khronos.org/OpenGL-Refpages/es2.0/)
+- [Vulkan Loader](https://github.com/KhronosGroup/Vulkan-Loader)
+- [LibDRM](https://github.com/tobiasjakobi/libdrm)
+- GBM
+- [Libinput](https://www.freedesktop.org/wiki/Software/libinput/)
+- [XKBCommon](https://xkbcommon.org/)
+- udev
+- [Pixman](https://pixman.org/)
+- [libseat](https://git.sr.ht/~kennylevinsen/seatd)
+- [hwdata](https://github.com/vcrhonek/hwdata)
+- [libdisplay-info](https://gitlab.freedesktop.org/emersion/libdisplay-info)
+- [libliftoff](https://gitlab.freedesktop.org/emersion/libliftoff)
 
-The config is located in `~/.config/openwm/config.lua`.
+If you want to build OpenWM for X11, you will also need:
 
-> [!IMPORTANT]
-> The config is **not** automatically generated.
-> You need to manually create the config file.
+- [X11](https://www.x.org/) (of course)
+- [xcb](https://xcb.freedesktop.org/)
+- [libxcb-render-util](https://gitlab.freedesktop.org/xorg/lib/libxcb-render-util)
+- [libxcb-wm](https://gitlab.freedesktop.org/xorg/lib/libxcb-wm)
+- [libxcb-errors](https://gitlab.freedesktop.org/xorg/lib/libxcb-errors) (optional but highly recommended)
 
-### Configuring
+### Building
 
-The config is a **Lua** file.
+1. Clone the repository
+    ```bash
+    git clone https://git.sr.ht/~mariluski/openwm && cd openwm
+    ```
+2. Run `make`
+    ```bash
+    make
+    ```
+3. Follow the instructions shown on the screen
+4. Test
+    ```bash
+    cd ~ && openwm -v
+    ```
+5. Enjoy!
 
-Lua is a **lightweight**, **embeddable** scripting language used in many applications: Like Neovim, ROBLOX, and many more.
+### Pre-compiled binaries
 
-> [!TIP]
-> Lua is a **real** programming language, so you can write *helpers* to make your life easier.
+Pre-compiled binaries are available in `.deb`, `.rpm` and regular Linux binaries.
 
-The configuration is inside the `config` table.
+They can be found in the [Releases](https://github.com/TrieWM/TrieWM/releases) page.
 
-#### Options
+## Configuration
+
+OpenWM is highly configurable, and you can change almost everything.
+
+You can find the configuration file in `~/.config/openwm/config.lua`.
+
+### Table of options
 
 ---
 
-| Option | Type | Description |
-| --- | --- | --- |
-| `theme` | String | What theme to use. See [Themes](#themes) |
-| `modifier` | String | What modifier to use. Defaults to the Windows / Meta key (mod4) |
-| `bar.floating` | Boolean | Whether to show the bar floating (not fully attached to the edge of the screen) or not |
-| `bar.height` | Number | The height of the bar |
-| `bar.width` | Number | The width of the bar |
-| `bar.fillsx` | Boolean | Whether to make the bar fill the whole `x` |
-| `bar.background` | String | The background color of the bar |
-| `bar.position` | String | The position of the bar. Can be `top`, `bottom`, `left` or `right` |
-| `bar.font` | String | The font to use for the bar |
-| `bar.elements` | Array | The elements to show in the bar |
-| `bar.elements.keybinds` | Boolean | Whether to show the keybinds in the bar or not |
-| `bar.elements.workspaces` | Boolean | Whether to show the workspaces in the bar or not |
-| `bar.elements.workspaces.first` | Table | The first workspace to show in the bar |
-| `bar.elements.workspaces.first.color` | String | The color of the first workspace |
-| `bar.elements.workspaces.first.icon` | String | The icon of the first workspace |
-| `bar.elements.workspaces.second` | Table | The second workspace to show in the bar |
-| `bar.elements.workspaces.second.color` | String | The color of the second workspace |
-| `bar.elements.workspaces.second.icon` | String | The icon of the second workspace |
-| `bar.elements.workspaces.third` | Table | The third workspace to show in the bar |
-| `bar.elements.workspaces.third.color` | String | The color of the third workspace |
-| `bar.elements.workspaces.third.icon` | String | The icon of the third workspace |
-| `bar.elements.workspaces.fourth` | Table | The fourth workspace to show in the bar |
-| `bar.elements.workspaces.fourth.color` | String | The color of the fourth workspace |
-| `bar.elements.workspaces.fourth.icon` | String | The icon of the fourth workspace |
-| `bar.elements.workspaces.fifth` | Table | The fifth workspace to show in the bar |
-| `bar.elements.workspaces.fifth.color` | String | The color of the fifth workspace |
-| `bar.elements.workspaces.fifth.icon` | String | The icon of the fifth workspace |
-| `bar.elements.workspaces.sixth` | Table | The sixth workspace to show in the bar |
-| `bar.elements.workspaces.sixth.color` | String | The color of the sixth workspace |
-| `bar.elements.workspaces.sixth.icon` | String | The icon of the sixth workspace |
-| `bar.elements.workspaces.seventh` | Table | The seventh workspace to show in the bar |
-| `bar.elements.workspaces.seventh.color` | String | The color of the seventh workspace |
-| `bar.elements.workspaces.seventh.icon` | String | The icon of the seventh workspace |
-| `bar.elements.workspaces.eighth` | Table | The eighth workspace to show in the bar |
-| `bar.elements.workspaces.eighth.color` | String | The color of the eighth workspace |
-| `bar.elements.workspaces.eighth.icon` | String | The icon of the eighth workspace |
-| `bar.elements.workspaces.nineth` | Table | The ninth workspace to show in the bar |
-| `bar.elements.workspaces.nineth.color` | String | The color of the ninth workspace |
-| `bar.elements.workspaces.nineth.icon` | String | The icon of the ninth workspace |
-| `bar.elements.layout` | Boolean | Whether to show the layout in the bar or not |
-| `bar.elements.title` | Boolean | Whether to show the title in the bar or not |
-| `bar.elements.wincontrols` | Boolean | Whether to show the window controls in the bar or not |
-
-#### Themes
-
-Themes are located in `~/.config/openwm/themes`.
-
-> [!TIP]
-> Themes are like configurations you can easily switch between.
+| Option | Type | Description | Default |
+| --- | --- | --- | --- |
+| `keymap` | `table` | Options related to keymaps | --- |
+| `keymap.layout` | `string` | The keyboard layout to use | `us` |
+| `keymap.variant` | `string` | The keyboard variant to use | --- |
+| `keymap.model` | `string` | The keyboard model to use | --- |
+| `keymap.modkey` | `string` | The modifier key to use for keybindings | `meta` |
+| `bar` | `table` | Options related to the bar | --- |
+| `bar.height` | `number` | The height of the bar | `30` |
+| `bar.position` | `string` | The position of the bar | `top` |
+| `bar.radius` | `number` | The radius of the bar's corners | `2` |
+| `bar.background_color` | `string` | The background color of the bar | `#000000` |
+| `bar.foreground_color` | `string` | The foreground color of the bar | `#ffffff` |
+| `bar.font` | `string` | The font to use for the bar | `JetBrains Mono 12` |
 
 ## Contributing
 
-If you want to contribute to OpenWM, please read the [contributing guidelines](CONTRIBUTING.md).
+If you want to contribute, you can do so!
 
-### Quick notice
+Note that **we use e-mail _flow_**: Use `git send-email` to send patches to the mailing list at `~mariluski/openwm-devel@lists.sr.ht`.
 
-- OpenWM uses the [Rust](https://www.rust-lang.org/) programming language.
-- OpenWM uses the [Wayland](https://wayland.freedesktop.org/) protocol.
-- The GitHub repository is a mirror. The original repository is [in SourceHut](https://git.sr.ht/~mariluski/openwm).
-- OpenWM is made with Smithay.
-- We have a .prettierrc file. Use it to format your code.
-- Use LF line endings.
-- Use tabs equivalent to 4 spaces for indentation.
-- If you have any questions, feel free to ask in out [Matrix room](https://matrix.to/#/#openwm:matrix.org).
-- Have fun!
+## Code of Conduct
+
+Please read the [Code of Conduct](CODE_OF_CONDUCT.md) before contributing, chatting, etc.
 
 ## License
 
-OpenWM is licensed under the **GNU General Public License v3.0**.
+OpenWM is under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html).
 
-You can find code here [on SourceHut](https://git.sr.ht/~mariluski/openwm) or [on GitHub](https://github.com/mariluski/openwm).
-
-> [!WARNING]
-> Again, the GitHub repository is a mirror.
-> We do not check the repo or anything: It is just for convenience.
-
-### License (in short)
-
-You can use this for whatever you want. But make sure it is [free software](https://opensource.org/osd).
-
-> [!NOTE]
-> Free software isn't that it has zero cost: It is that its code is open and you can use it.
-> Also, the license has to be the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html).
+>>>>>>> d22b44ebdd4dd5e9b8188b26efbf6fe56ca17690
