@@ -4,14 +4,14 @@
 
 # Compiler (default)
 CC = clang
-CFLAGS = -Wall -Wextra -Werror -std=c11 -I/usr/local/include
-LDFLAGS = -L/usr/local/lib
+CFLAGS = -Wall -Wextra -Werror -std=c11 -I/usr/local/include $(shell pkg-config --cflags wlroots-0.18) -DWLR_USE_UNSTABLE
+LDFLAGS = -L/usr/local/lib $(shell pkg-config --libs wlroots-0.18) -lwayland-server
 
 EXEC = triewm
-SRC = src/main.c
+SRC = src/main.c src/cli/help.c 
 OBJ = $(SRC:.c=.o)
 
-build:
+build: src/main.c
 	@echo "Welcome to the TrieWM build system!"
 	@echo -e "\033[36m?\033[0m What compiler do you want to use? \n"
 	@echo "    1 - clang (default)"
@@ -52,6 +52,7 @@ clean:
 	if [ "$$confirm" = "y" ]; then \
 		echo "Cleaning..."; \
 		rm -f $(EXEC); \
+		rm -rf $(PROTOCOLS_DIR); \
 		if [ $$? -eq 0 ]; then \
 			printf "\033[32mClean successful!\033[0m\n"; \
 		else \

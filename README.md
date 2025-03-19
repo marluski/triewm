@@ -1,26 +1,120 @@
-# OpenWM
+<div align="center">
+    <h1>TrieWM</h1>
 
-OpenWM is an **extremely minimal**, **open-source** and **free** Window Manager for Linux.
+    <ul>
+    <li><a href="#about">About</li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#installation">Installation</a></li>
+    <li><a href="#keybinds">Keybinds</a></li>
+    <li><a hreff="#customization">Customization</a></li>
+    <li><a href="#everything_search">Everything search</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    </ul>
+</div>
+
+## About
+
+TrieWM is a tiling window manager for Wayland and X11.
+
+It was made to have all the features missing from every tiling window manager: Auto-tiling, floating windows, animations, and more.
 
 ## Features
 
 - Fast
 - Based on Wayland
-- Minimal (Text)
+- Minimal
 - Supports graphical applications
 - Supports multiple monitors
+- Animations
+- Auto-tiling
+- Floating windows
+- Customizable
+- Easy to use
+- Transparency effects
+- Shadow effects
+- Blur effects
+- Comes with a helpful deamon that helps you do things like change the brightness, volume, and more.
+- Has a bar.
 
 ## Installation
 
-<!-- TODO: Make this section. -->
+Installing Trie is pretty easy.
+
+Also, if you use BSD, you can also use Trie.
+We also have an AUR package for Trie (`triewm` and `triewm-git`).
+
+> Note: The only installation method is currently building from source.
+> The process is easy though.
+
+### Building from source
+
+1. Clone the repository
+```bash
+git clone https://git.sr.ht/~mariluski/triewm
+```
+2. Use `make` to build the project
+```bash
+make
+```
+3. For the first question, you can just press enter to use `clang` as the compiler. Change this if you want.
+4. For the second question, just press `y` to confirm
+5. Press `y` if you want to move the binary to `/usr/local/bin`. This will let you run TrieWM with `triewm` in the terminal.
+6. Test the installation by running `triewm -v` in the terminal.
+7. Enjoy!
+
+## Keybinds
+
+TrieWM has keybinds made specifically for you to not move your fingers around.
+
+| Key | Action |
+| --- | --- |
+| <kbd>Alt</kbd> + <kbd>q</kbd> | Switch to the next workspace |
+| <kbd>Alt</kbd> + <kbd>a</kbd> | Open the terminal |
+| <kbd>Alt</kbd> + <kbd>w</kbd> | Open the web browser |
+| <kbd>Alt</kbd> + <kbd>f</kbd> | Open the file manager |
+| <kbd>Alt</kbd> + <kbd>1</kbd> - <kbd>9</kbd> | Switch to the [tag](#tags) with the number specified |
+| `$mod + <space>` | Open *[Everything search](#everything_search)* |
+
+# Frequently Asked Questions
+
+## What are the differences between TrieWM and OpenWM?
+
+OpenWM was the old name of TrieWM.
+
+It got renamed because of obvious reasons.
+
+## What are tags?
+
+Tags are in 90% of the use cases the same as workspaces.
+
+You can think of them like *groups of windows*.
+However, a window can be in multiple tags and you can show multiple tags at the same time.
+
+## What is the difference between tiling and floating?
+
+Tiling windows just automatically place your windows in a [golden spiral](https://en.wikipedia.org/wiki/Golden_spiral) layout.
+
+Floating windows are your regular windows: you can move them around, resize them, and so on.
+
+## Why shall I use TrieWM and not anything else?
+
+Well, it is **your** decision use what you want. No one is forcing you to use Trie.
+As everything in life, it also has its own advantages and disadvantages.
+
+But Trie's advantages *might* convince you to use Trie.
+
+## Is Trie safe?
+
+Yes. Trie is **safe** and collects no data.
 
 ## Customization
 
-OpenWM is **highly customizable**.
+TrieWM is **highly customizable**.
 
-OpenWM already comes with a pretty *decent* config witht the Tokyo-Night theme.
+TrieWM already comes with a basic config.
 
-The config is located in `~/.config/openwm/config.lua`.
+The config is located in `~/.config/trie/config.lua`.
 
 > [!IMPORTANT]
 > The config is **not** automatically generated.
@@ -88,41 +182,32 @@ The configuration is inside the `config` table.
 
 #### Themes
 
-Themes are located in `~/.config/openwm/themes`.
+Themes are located in `~/.config/trie/themes`.
 
 > [!TIP]
 > Themes are like configurations you can easily switch between.
 
+Trie comes with three themes: Retro, Nord, and Tokyo-Night.
+
+## Everything search
+
+*Everything search* is a *rip-off* of MacOS' *Spotlight* with a few extra features.
+
+It is a program that lets you search your computer for files, applications, use a calculator, search the web, control your music, etc.
+
+Spawn Everything with <kbd>
+
+
 ## Contributing
 
-If you want to contribute to OpenWM, please read the [contributing guidelines](CONTRIBUTING.md).
-
-### Quick notice
-
-- OpenWM uses the [Rust](https://www.rust-lang.org/) programming language.
-- OpenWM uses the [Wayland](https://wayland.freedesktop.org/) protocol.
-- The GitHub repository is a mirror. The original repository is [in SourceHut](https://git.sr.ht/~mariluski/openwm).
-- OpenWM is made with Smithay.
-- We have a .prettierrc file. Use it to format your code.
-- Use LF line endings.
-- Use tabs equivalent to 4 spaces for indentation.
-- If you have any questions, feel free to ask in out [Matrix room](https://matrix.to/#/#openwm:matrix.org).
-- Have fun!
+If you want to contribute to TrieWM, please read the [contributing guidelines](CONTRIBUTING.md).
 
 ## License
 
-OpenWM is licensed under the **GNU General Public License v3.0**.
+TrieWM is licensed under the **GNU General Public License v3.0**.
 
 You can find code here [on SourceHut](https://git.sr.ht/~mariluski/openwm) or [on GitHub](https://github.com/mariluski/openwm).
 
 > [!WARNING]
 > Again, the GitHub repository is a mirror.
 > We do not check the repo or anything: It is just for convenience.
-
-### License (in short)
-
-You can use this for whatever you want. But make sure it is [free software](https://opensource.org/osd).
-
-> [!NOTE]
-> Free software isn't that it has zero cost: It is that its code is open and you can use it.
-> Also, the license has to be the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html).

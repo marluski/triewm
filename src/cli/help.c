@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "help.h"
-#include "../main.c" // Explanation: #include things just copy and paste the file contents.
+
+#define VERSION_MANIFEST "1.0.0"
 
 void print_help() {
 	printf("Usage: triewm [OPTIONS]\n");
