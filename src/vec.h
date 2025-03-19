@@ -47,19 +47,19 @@ typedef struct {
 
 // Macro to get an element from the Vec
 #define VEC_GET(v, index, element_size)                                      \
-    ({                                                                      \
-        if ((index) >= (v).len) {                                           \
-            abort();                                                         \
-        }                                                                    \
-        (char *)(v).data + ((index) * (element_size));                     \
+    ({                                                                                     \
+        if ((index) >= (v).len) {                                                          \
+            abort();                                                                       \
+        }                                                                                  \
+        (char *)(v).data + ((index) * (element_size));                                     \
     })
 
 // Macro to set an element in the Vec
-#define VEC_SET(v, index, element, element_size)                            \
-    do {                                                                     \
-        if ((index) >= (v).len) {                                           \
-            abort();                                                         \
-        }                                                                    \
+#define VEC_SET(v, index, element, element_size)                                           \
+    do {                                                                                   \
+        if ((index) >= (v).len) {                                                          \
+            abort();                                                                       \
+        }                                                                                  \
         memcpy((char *)(v).data + ((index) * (element_size)), &(element), (element_size)); \
     } while (0)
 
