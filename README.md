@@ -1,16 +1,17 @@
 <div align="center">
     <h1>TrieWM</h1>
+</div>
 
-    <ul>
-    <li><a href="#about">About</li>
-    <li><a href="#features">Features</a></li>
-    <li><a href="#installation">Installation</a></li>
-    <li><a href="#keybinds">Keybinds</a></li>
-    <li><a hreff="#customization">Customization</a></li>
-    <li><a href="#everything_search">Everything search</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    </ul>
+<div align="center">
+    <h3>Table of contents</h3>
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="#installation">Installation</a>
+        <a href="#keybinds">Keybinds</a>
+        <a href="#customization">Customization</a>
+        <a href="#everything_search">Everything search</a>
+        <a href="#contributing">Contributing</a>
+        <a href="#license">License</a>
 </div>
 
 ## About
