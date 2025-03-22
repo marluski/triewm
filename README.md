@@ -16,6 +16,9 @@
 
 ## About
 
+> [!IMPORTANT]
+> THIS IS A MIRROR. WE WILL NOT ACCEPT ANY CONTRIBUTIONS HERE. THE ORIGINAL REPO IS [HERE](https://git.sr.ht/~mariluski/triewm)
+
 TrieWM is a tiling window manager for Wayland and X11.
 
 It was made to have all the features missing from every tiling window manager: Auto-tiling, floating windows, animations, and more.
